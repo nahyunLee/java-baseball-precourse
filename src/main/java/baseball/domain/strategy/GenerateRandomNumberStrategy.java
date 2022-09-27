@@ -2,13 +2,13 @@ package baseball.domain.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class GenerateRandomNumberStrategy implements GenerateNumberStrategy {
+import static baseball.domain.GameRuleConstants.MAX_NUMBER;
+import static baseball.domain.GameRuleConstants.MIN_NUMBER;
 
-    private final int START_NUMBER = 1;
-    private final int END_NUMBER = 9;
+public class GenerateRandomNumberStrategy implements GenerateNumberStrategy {
 
     @Override
     public int generateNumber() {
-        return Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
+        return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
     }
 }
