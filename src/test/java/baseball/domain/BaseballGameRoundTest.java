@@ -52,7 +52,7 @@ class BaseballGameRoundTest {
     void testPlayGame_withNotEnd() {
         //given
         List<GameNumber> computerNumberList = Arrays.asList(one(), two(), three());
-        List<GameNumber> playerNumbersList = Arrays.asList(four(), four(), six());
+        List<GameNumber> playerNumbersList = Arrays.asList(four(), five(), six());
 
         BaseballGameRound baseballGameRound = oneRoundGame(computerNumberList, playerNumbersList);
 

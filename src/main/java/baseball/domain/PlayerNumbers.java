@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class PlayerNumbers {
@@ -20,18 +19,30 @@ public class PlayerNumbers {
 
     private static void validNumberListSize(int numberListSize) {
         if (numberListSize != GameRuleConstants.GAME_NUMBER_DIGIT) {
-            throw new NumberFormatException("게임 숫자는 세개의 수로 이루어져야 합니다.");
+            throw new ArrayIndexOutOfBoundsException("게임 숫자는 세개의 수로 이루어져야 합니다.");
         }
     }
 
     private static void validNumberDifference(List<GameNumber> playerGameNumbers) {
-        if (playerGameNumbers.size() != new HashSet<>(playerGameNumbers).size()) {
+        if (isContainSameNumber(playerGameNumbers)) {
             throw new NumberFormatException("게임 숫자는 모두 다른 수로 구성되어야 합니다.");
         }
     }
 
+    private static boolean isContainSameNumber(List<GameNumber> playerGameNumbers) {
+        GameNumber firstNumber = playerGameNumbers.get(0);
+        GameNumber secondNumber = playerGameNumbers.get(1);
+        GameNumber thirdNumber = playerGameNumbers.get(2);
+
+        return firstNumber.isSame(secondNumber) || secondNumber.isSame(thirdNumber) || thirdNumber.isSame(firstNumber);
+    }
+
     public List<GameNumber> getPlayerNumbers() {
         return Collections.unmodifiableList(playerGameNumbers);
+    }
+
+    public boolean isSamePositionNumber(GameNumber number, int position) {
+        return playerGameNumbers.get(position).isSame(number);
     }
 
     public boolean isAnotherPositionNumber(GameNumber number, int position) {
@@ -61,10 +72,6 @@ public class PlayerNumbers {
             }
         }
         return false;
-    }
-
-    public boolean isSamePositionNumber(GameNumber number, int position) {
-        return playerGameNumbers.get(position).isSame(number);
     }
 
     public GameNumber getNumber(int position) {

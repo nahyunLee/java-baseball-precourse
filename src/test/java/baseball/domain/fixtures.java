@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class fixtures {
@@ -45,5 +46,11 @@ public class fixtures {
         PlayerNumbers playerNumbers = PlayerNumbers.createPlayerNumbers(playerNumberList);
 
         return BaseballGameRound.createBaseballGame(computerNumbers, playerNumbers);
+    }
+
+    public static PlayerNumbers oneTwoThree() {
+        List<GameNumber> gameNumbers = Arrays.asList(one(), two(), three());
+
+        return PlayerNumbers.createPlayerNumbers(gameNumbers);
     }
 }
