@@ -23,6 +23,10 @@ public class GameNumber {
         }
     }
 
+    public boolean isSame(GameNumber gameNumber) {
+        return number == gameNumber.getNumber();
+    }
+
     public int getNumber() {
         return number;
     }

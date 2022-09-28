@@ -33,4 +33,41 @@ public class PlayerNumbers {
     public List<GameNumber> getPlayerNumbers() {
         return Collections.unmodifiableList(playerGameNumbers);
     }
+
+    public boolean isAnotherPositionNumber(GameNumber number, int position) {
+        if (!this.isContainsGameNumber(number)) {
+            return false;
+        }
+
+        return this.getIndexOf(number) != position;
+    }
+
+    private int getIndexOf(GameNumber gameNumber) {
+        int index;
+
+        for (index = 0; index < playerGameNumbers.size(); index++) {
+            if (gameNumber.isSame(playerGameNumbers.get(index))) {
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    private boolean isContainsGameNumber(GameNumber gameNumber) {
+        for (GameNumber playerGameNumber : playerGameNumbers) {
+            if (gameNumber.isSame(playerGameNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isSamePositionNumber(GameNumber number, int position) {
+        return playerGameNumbers.get(position).isSame(number);
+    }
+
+    public GameNumber getNumber(int position) {
+        return playerGameNumbers.get(position);
+    }
 }
