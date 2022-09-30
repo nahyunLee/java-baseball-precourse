@@ -1,7 +1,13 @@
 package baseball.domain;
 
+import baseball.domain.strategy.GenerateNumberStrategy;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+
+import static baseball.domain.GameRuleConstants.GAME_NUMBER_DIGIT;
 
 public class PlayerNumbers {
 
@@ -11,30 +17,46 @@ public class PlayerNumbers {
         this.playerGameNumbers = playerGameNumbers;
     }
 
-    public static PlayerNumbers createPlayerNumbers(List<GameNumber> playerGameNumbers) {
+    public static PlayerNumbers createPlayerNumbers(List<Integer> playerGameNumbers) {
         validNumberListSize(playerGameNumbers.size());
         validNumberDifference(playerGameNumbers);
-        return new PlayerNumbers(playerGameNumbers);
+
+        return new PlayerNumbers(intToGameNumber(playerGameNumbers));
+    }
+
+    public static PlayerNumbers createAutoPlayerNumbers(GenerateNumberStrategy generateNumberStrategy) {
+        List<Integer> gameNumbers = new ArrayList<>();
+        for (int i = 0; i < GAME_NUMBER_DIGIT; i++) {
+            gameNumbers.add(generateNumberStrategy.generateNumber());
+        }
+
+        return createPlayerNumbers(gameNumbers);
     }
 
     private static void validNumberListSize(int numberListSize) {
-        if (numberListSize != GameRuleConstants.GAME_NUMBER_DIGIT) {
+        if (numberListSize != GAME_NUMBER_DIGIT) {
             throw new ArrayIndexOutOfBoundsException("게임 숫자는 세개의 수로 이루어져야 합니다.");
         }
     }
 
-    private static void validNumberDifference(List<GameNumber> playerGameNumbers) {
+    private static void validNumberDifference(List<Integer> playerGameNumbers) {
         if (isContainSameNumber(playerGameNumbers)) {
             throw new NumberFormatException("게임 숫자는 모두 다른 수로 구성되어야 합니다.");
         }
     }
 
-    private static boolean isContainSameNumber(List<GameNumber> playerGameNumbers) {
-        GameNumber firstNumber = playerGameNumbers.get(0);
-        GameNumber secondNumber = playerGameNumbers.get(1);
-        GameNumber thirdNumber = playerGameNumbers.get(2);
+    private static boolean isContainSameNumber(List<Integer> playerGameNumbers) {
+        return playerGameNumbers.size() != new HashSet<>(playerGameNumbers).size();
+    }
 
-        return firstNumber.isSame(secondNumber) || secondNumber.isSame(thirdNumber) || thirdNumber.isSame(firstNumber);
+    private static List<GameNumber> intToGameNumber(List<Integer> playerNumbers) {
+        List<GameNumber> gameNumbers = new ArrayList<>();
+
+        for (Integer number : playerNumbers) {
+            gameNumbers.add(GameNumber.createNumber(number));
+        }
+
+        return gameNumbers;
     }
 
     public List<GameNumber> getPlayerNumbers() {

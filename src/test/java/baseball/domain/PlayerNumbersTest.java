@@ -18,7 +18,7 @@ class PlayerNumbersTest {
     @DisplayName("플레이어의 게임 숫자 일급컬렉션을 생성한다.")
     void testCreatePlayerNumbers() {
         //given
-        List<GameNumber> gameNumbers = Arrays.asList(one(), two(), three());
+        List<Integer> gameNumbers = Arrays.asList(1, 2, 3);
 
         //when then
         assertDoesNotThrow(() -> PlayerNumbers.createPlayerNumbers(gameNumbers));
@@ -28,7 +28,7 @@ class PlayerNumbersTest {
     @DisplayName("플레이어의 게임 숫자가 세개가 아닐 경우 ArrayIndexOutOfBoundsException을 반환한다.")
     void testCreatePlayerNumbers_withOverSize() {
         //given
-        List<GameNumber> gameNumbers = Arrays.asList(one(), two(), three(), four());
+        List<Integer> gameNumbers = Arrays.asList(1, 2, 3, 4);
 
         //when
         assertThatThrownBy(() -> PlayerNumbers.createPlayerNumbers(gameNumbers))
@@ -40,7 +40,7 @@ class PlayerNumbersTest {
     @DisplayName("플레이어의 게임 숫자가 모두 다른 수가 아닐 경우 NumberFormatException을 반환한다.")
     void testCreatePlayerNumbers_withDuplicateNumber() {
         //given
-        List<GameNumber> gameNumbers = Arrays.asList(one(), two(), two());
+        List<Integer> gameNumbers = Arrays.asList(1, 2, 2);
 
         //when
         assertThatThrownBy(() -> PlayerNumbers.createPlayerNumbers(gameNumbers))

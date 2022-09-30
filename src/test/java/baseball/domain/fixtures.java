@@ -41,7 +41,7 @@ public class fixtures {
         return GameNumber.createNumber(9);
     }
 
-    public static BaseballGameRound oneRoundGame(List<GameNumber> computerNumberList, List<GameNumber> playerNumberList) {
+    public static BaseballGameRound oneRoundGame(List<Integer> computerNumberList, List<Integer> playerNumberList) {
         PlayerNumbers computerNumbers = PlayerNumbers.createPlayerNumbers(computerNumberList);
         PlayerNumbers playerNumbers = PlayerNumbers.createPlayerNumbers(playerNumberList);
 
@@ -49,7 +49,7 @@ public class fixtures {
     }
 
     public static PlayerNumbers oneTwoThree() {
-        List<GameNumber> gameNumbers = Arrays.asList(one(), two(), three());
+        List<Integer> gameNumbers = Arrays.asList(1, 2, 3);
 
         return PlayerNumbers.createPlayerNumbers(gameNumbers);
     }
