@@ -53,4 +53,10 @@ public class fixtures {
 
         return PlayerNumbers.createPlayerNumbers(gameNumbers);
     }
+
+    public static PlayerNumbers customPlayerNumbers(int first, int second, int third) {
+        List<Integer> gameNumbers = Arrays.asList(first, second, third);
+
+        return PlayerNumbers.createPlayerNumbers(gameNumbers);
+    }
 }

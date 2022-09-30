@@ -55,7 +55,7 @@ class GameNumberTest {
         assertThat(isSameGameNumber).isEqualTo(isSame);
     }
 
-    static Stream<Arguments> gameNumberSource() {
+    private static Stream<Arguments> gameNumberSource() {
         return Stream.of(
                 Arguments.of(1, 1, true),
                 Arguments.of(1, 2, false)

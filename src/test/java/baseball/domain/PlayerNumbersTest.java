@@ -93,7 +93,7 @@ class PlayerNumbersTest {
 
     @Test
     @DisplayName("프레이어의 게임 숫자 중 특정 순서의 숫자를 반환한다.")
-    void testgetNumber() {
+    void testGetNumber() {
         //given
         PlayerNumbers playerNumbers = oneTwoThree();
 
