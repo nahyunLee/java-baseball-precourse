@@ -2,13 +2,27 @@ package baseball.domain.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static baseball.domain.GameRuleConstants.MAX_NUMBER;
-import static baseball.domain.GameRuleConstants.MIN_NUMBER;
+import java.util.*;
+
+import static baseball.domain.GameRuleConstants.*;
 
 public class GenerateRandomNumberStrategy implements GenerateNumberStrategy {
 
     @Override
-    public int generateNumber() {
-        return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+    public List<Integer> generateNumbers() {
+        List<Integer> generatedNumbers;
+
+        do {
+            generatedNumbers = new ArrayList<>();
+            generatedNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+            generatedNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+            generatedNumbers.add(Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER));
+        } while (this.isUniqueNumbers(generatedNumbers));
+
+        return generatedNumbers;
+    }
+
+    private boolean isUniqueNumbers(List<Integer> numberList) {
+        return numberList.size() != new HashSet<>(numberList).size();
     }
 }
