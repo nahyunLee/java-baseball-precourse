@@ -25,12 +25,9 @@ public class PlayerNumbers {
     }
 
     public static PlayerNumbers createAutoPlayerNumbers(GenerateNumberStrategy generateNumberStrategy) {
-        List<Integer> gameNumbers = new ArrayList<>();
-        for (int i = 0; i < GAME_NUMBER_DIGIT; i++) {
-            gameNumbers.add(generateNumberStrategy.generateNumber());
-        }
+        List<Integer> randomNumbers = generateNumberStrategy.generateNumbers();
 
-        return createPlayerNumbers(gameNumbers);
+        return new PlayerNumbers(intToGameNumber(randomNumbers));
     }
 
     private static void validNumberListSize(int numberListSize) {

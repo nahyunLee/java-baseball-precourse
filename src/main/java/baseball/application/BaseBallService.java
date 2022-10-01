@@ -13,12 +13,6 @@ import static java.lang.String.format;
 
 public class BaseBallService {
 
-    GenerateNumberStrategy generateNumberStrategy;
-
-    public BaseBallService(GenerateNumberStrategy generateNumberStrategy) {
-        this.generateNumberStrategy = generateNumberStrategy;
-    }
-
     public PlayerNumbers generateComputerNumbers(GenerateNumberStrategy generateNumberStrategy) {
         return PlayerNumbers.createAutoPlayerNumbers(generateNumberStrategy);
     }

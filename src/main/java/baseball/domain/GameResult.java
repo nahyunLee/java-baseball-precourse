@@ -22,6 +22,12 @@ public class GameResult {
                 .build();
     }
 
+    public static GameResult createPlayingGameResult() {
+        return new Builder()
+                .gameStatus(PLAYING)
+                .build();
+    }
+
     private static GameStatusPolicy getGameStatus(int strikeNum) {
         if (strikeNum == GAME_NUMBER_DIGIT) {
             return END;

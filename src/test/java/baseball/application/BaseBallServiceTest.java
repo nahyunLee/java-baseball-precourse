@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BaseBallServiceTest {
 
-    private BaseBallService baseBallService = new BaseBallService(new GenerateRandomNumberStrategy());
+    private BaseBallService baseBallService = new BaseBallService();
 
     private static Stream<Arguments> playGameMethodSource() {
         return Stream.of(
