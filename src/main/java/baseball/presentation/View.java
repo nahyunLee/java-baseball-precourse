@@ -38,9 +38,11 @@ public class View {
         if (strikeCount == 0) {
             return format("%d볼", ballCount);
         }
+
         if (ballCount == 0) {
             return format("%d스트라이크", strikeCount);
         }
+
         return format("%d볼 %d스트라이크", ballCount, strikeCount);
     }
 }

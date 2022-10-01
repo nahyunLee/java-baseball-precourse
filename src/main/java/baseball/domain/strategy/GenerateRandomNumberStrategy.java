@@ -2,9 +2,12 @@ package baseball.domain.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
-import static baseball.domain.GameRuleConstants.*;
+import static baseball.domain.GameRuleConstants.MAX_NUMBER;
+import static baseball.domain.GameRuleConstants.MIN_NUMBER;
 
 public class GenerateRandomNumberStrategy implements GenerateNumberStrategy {
 

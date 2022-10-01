@@ -2,10 +2,7 @@ package baseball.domain;
 
 import baseball.domain.strategy.GenerateNumberStrategy;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static baseball.domain.GameRuleConstants.GAME_NUMBER_DIGIT;
 
@@ -73,24 +70,31 @@ public class PlayerNumbers {
     }
 
     private int getIndexOf(GameNumber gameNumber) {
+        Map<Boolean, Integer> indexGameNumberMap = new HashMap<>();
         int index;
 
         for (index = 0; index < playerGameNumbers.size(); index++) {
-            if (gameNumber.isSame(playerGameNumbers.get(index))) {
-                break;
-            }
+            indexGameNumberMap.put(this.isSameNumberIndex(index, gameNumber), index);
         }
 
-        return index;
+        return indexGameNumberMap.get(true);
+    }
+
+    private boolean isSameNumberIndex(int index, GameNumber gameNumber) {
+        return gameNumber.isSame(playerGameNumbers.get(index));
     }
 
     private boolean isContainsGameNumber(GameNumber gameNumber) {
+        List<Boolean> containsList = new ArrayList<>();
+
         for (GameNumber playerGameNumber : playerGameNumbers) {
-            if (gameNumber.isSame(playerGameNumber)) {
-                return true;
-            }
+            containsList.add(this.isSameNumber(gameNumber, playerGameNumber));
         }
-        return false;
+        return containsList.contains(true);
+    }
+
+    private boolean isSameNumber(GameNumber gameNumber, GameNumber playerGameNumber) {
+        return gameNumber.isSame(playerGameNumber);
     }
 
     public GameNumber getNumber(int position) {
